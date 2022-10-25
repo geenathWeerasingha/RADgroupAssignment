@@ -59,30 +59,31 @@ const Register = () => {
         }
     }
 
-    return (<>
-        <Navbaar />
+    return (
+        <>
+        <Navbaar/>
         <div className="container">
             <NavLink to="/">home</NavLink>
             <form className="mt-4">
                 <div className="row">
                     <div class="mb-3 col-lg-6 col-md-6 col-12">
-                        <label for="exampleInputEmail1" class="form-label">Name</label>
+                        <label for="exampleInputEmail1" class="form-label">Supplier Name</label>
                         <input type="text" value={inpval.name} onChange={setdata} name="name" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" />
                     </div>
                     <div class="mb-3 col-lg-6 col-md-6 col-12">
-                        <label for="exampleInputPassword1" class="form-label">Email</label>
+                        <label for="exampleInputPassword1" class="form-label">Supplier Email</label>
                         <input type="email" value={inpval.email} onChange={setdata} name="email" class="form-control" id="exampleInputPassword1" />
                     </div>
                     <div class="mb-3 col-lg-6 col-md-6 col-12">
-                        <label for="exampleInputPassword1" class="form-label">Contact No</label>
+                        <label for="exampleInputPassword1" class="form-label">Supplier Contact No</label>
                         <input type="number" value={inpval.mobile} onChange={setdata} name="mobile" class="form-control" id="exampleInputPassword1" />
                     </div>
                     <div class="mb-3 col-lg-6 col-md-6 col-12">
-                        <label for="exampleInputPassword1" class="form-label">Designation</label>
+                        <label for="exampleInputPassword1" class="form-label">Supplier City</label>
                         <input type="text" value={inpval.designation} onChange={setdata} name="designation" class="form-control" id="exampleInputPassword1" />
                     </div>
                     <div class="mb-3 col-lg-6 col-md-6 col-12">
-                        <label for="exampleInputPassword1" class="form-label">Address</label>
+                        <label for="exampleInputPassword1" class="form-label">Supplier Address</label>
                         <input type="text" value={inpval.add} onChange={setdata} name="add" class="form-control" id="exampleInputPassword1" />
                     </div>
 
@@ -91,6 +92,6 @@ const Register = () => {
                 </div>
             </form>
         </div>
-        </>)
+        </> )
 }
 export default Register;

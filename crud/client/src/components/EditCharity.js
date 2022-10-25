@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { NavLink, useParams,useHistory } from 'react-router-dom'
 import { updatedata } from './context/ContextProvider'
-import Navbaar from './Navbaar';
+
 
 const Edit = () => {
 
@@ -13,20 +13,21 @@ const Edit = () => {
     const history = useHistory("");
 
     const [inpval, setINP] = useState({
-        name: "",
-        email: "",
-        mobile: "",
-        designation: "",
-        add: ""
+        category: "",
+        amount: "",
+        desc: "",
+        premises: "",
+        year: "",
+        month: ""
     })
 
     const setdata = (e) => {
         console.log(e.target.value);
-        const { name, value } = e.target;
+        const { category, value } = e.target;
         setINP((preval) => {
             return {
                 ...preval,
-                [name]: value
+                [category]: value
             }
         })
     }
@@ -67,7 +68,7 @@ const Edit = () => {
     const updateuser = async(e)=>{
         e.preventDefault();
 
-        const {name,email,designation,add,mobile} = inpval;
+        const {category, desc, premises, amount, year, month } = inpval;
 
         const res2 = await fetch(`http://localhost:5000/updateuser/${id}`,{
             method: "PATCH",
@@ -75,7 +76,7 @@ const Edit = () => {
                 "Content-Type": "application/json"
             },
             body:JSON.stringify({
-                name,email,designation,add,mobile
+                category, desc, premises, amount, year, month
             })
         });
 
@@ -92,40 +93,40 @@ const Edit = () => {
     }
 
     return (
-        <>
-        <Navbaar />
-        
         <div className="container">
             <NavLink to="/">home2</NavLink>
             <form className="mt-4">
-                <div className="row">
+            <div className="row">
                     <div class="mb-3 col-lg-6 col-md-6 col-12">
-                        <label for="exampleInputEmail1" class="form-label">Name</label>
-                        <input type="text" value={inpval.name} onChange={setdata} name="name" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" />
+                        <label for="exampleInputEmail1" class="form-label">Category</label>
+                        <input type="text" value={inpval.category} onChange={setdata} category="category" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" />
                     </div>
                     <div class="mb-3 col-lg-6 col-md-6 col-12">
-                        <label for="exampleInputPassword1" class="form-label">email</label>
-                        <input type="email" value={inpval.email} onChange={setdata} name="email" class="form-control" id="exampleInputPassword1" />
+                        <label for="exampleInputPassword1" class="form-label">Amount</label>
+                        <input type="number" value={inpval.amount} onChange={setdata} name="amount" class="form-control" id="exampleInputPassword1" />
                     </div>
                     <div class="mb-3 col-lg-6 col-md-6 col-12">
-                        <label for="exampleInputPassword1" class="form-label">Mobile</label>
-                        <input type="number" value={inpval.mobile} onChange={setdata} name="mobile" class="form-control" id="exampleInputPassword1" />
+                        <label for="exampleInputPassword1" class="form-label">Description</label>
+                        <input type="text" value={inpval.desc} onChange={setdata} name="desc" class="form-control" id="exampleInputPassword1" />
                     </div>
                     <div class="mb-3 col-lg-6 col-md-6 col-12">
-                        <label for="exampleInputPassword1" class="form-label">Designation</label>
-                        <input type="text" value={inpval.designation} onChange={setdata} name="designation" class="form-control" id="exampleInputPassword1" />
+                        <label for="exampleInputPassword1" class="form-label">Year</label>
+                        <input type="number" value={inpval.desc} onChange={setdata} name="year" class="form-control" id="exampleInputPassword1" />
                     </div>
                     <div class="mb-3 col-lg-6 col-md-6 col-12">
-                        <label for="exampleInputPassword1" class="form-label">Address</label>
-                        <input type="text" value={inpval.add} onChange={setdata} name="add" class="form-control" id="exampleInputPassword1" />
+                        <label for="exampleInputPassword1" class="form-label">Month</label>
+                        <input type="text" value={inpval.desc} onChange={setdata} name="month" class="form-control" id="exampleInputPassword1" />
                     </div>
-
+                    <div class="mb-3 col-lg-6 col-md-6 col-12">
+                        <label for="exampleInputPassword1" class="form-label">premises</label>
+                        <input type="text" value={inpval.premises} onChange={setdata} name="premises" class="form-control" id="exampleInputPassword1" />
+                    </div>
 
                     <button type="submit" onClick={updateuser} class="btn btn-primary">Submit</button>
                 </div>
             </form>
         </div>
-        </> )
+    )
 }
 
 export default Edit;

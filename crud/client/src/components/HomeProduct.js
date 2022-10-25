@@ -1,11 +1,11 @@
 import React, { useState, useEffect, useContext } from 'react'
-import RemoveRedEyeIcon from '@mui/icons-material/RemoveRedEyeTwoTone';
-import CreateIcon from '@mui/icons-material/BorderColor';
-import DeleteOutlineIcon from '@mui/icons-material/Delete';
+import RemoveRedEyeIcon from '@mui/icons-material/RemoveRedEye';
+import CreateIcon from '@mui/icons-material/Create';
+import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import { NavLink } from 'react-router-dom';
-import { adddata, deldata } from './context/ContextProvider';
-import { updatedata } from './context/ContextProvider'
-import Navbaar from './Navbaar';
+import { adddata, deldata } from './context/ContextProvProductIder';
+import { updatedata } from './context/ContextProvProductIder'
+
 
 
 
@@ -46,9 +46,9 @@ const Home = () => {
         getdata();
     }, [])
 
-    const deleteuser = async (id) => {
+    const deleteuser = async (ProductId) => {
 
-        const res2 = await fetch(`http://localhost:5000/deleteuser/${id}`, {
+        const res2 = await fetch(`http://localhost:5000/deleteuser/${ProductId}`, {
             method: "DELETE",
             headers: {
                 "Content-Type": "application/json"
@@ -72,7 +72,6 @@ const Home = () => {
     return (
 
         <>
-        <Navbaar />
             {
                 udata ?
                     <>
@@ -106,36 +105,40 @@ const Home = () => {
             <div className="mt-5">
                 <div className="container">
                     <div className="add_btn mt-2 mb-2">
-                        <NavLink to="/register" className="btn btn-primary">Add Employee</NavLink>
+                        <NavLink to="/register" className="btn btn-primary">Add Product</NavLink>
                     </div>
 
                     <table class="table">
                         <thead>
-                            <tr className="table-primary">
-                                <th scope="col">id</th>
-                                <th scope="col">Name</th>
-                                <th scope="col">Designation</th>
-                                <th scope="col">Email</th>
-                                <th scope="col">Mobile</th>
+                            <tr className="table-dark">
+                                <th scope="col">ProductId</th>
+                                <th scope="col">Category</th>
+                                <th scope="col">Brand</th>
+                                <th scope="col">Model</th>
+                                <th scope="col">Weight</th>
+                                <th scope="col">Quantity</th>
+                                <th scope="col">price</th>
                                 <th scope="col"></th>
                             </tr>
                         </thead>
                         <tbody>
 
                             {
-                                getuserdata.map((element, id) => {
+                                getuserdata.map((element, ProductId) => {
                                     return (
                                         <>
                                             <tr>
-                                                <th scope="row">{id + 1}</th>
-                                                <td>{element.name}</td>
-                                                <td>{element.designation}</td>
-                                                <td>{element.email}</td>
-                                                <td>{element.mobile}</td>
+                                                <th scope="row">{ProductId + 1}</th>
+                                                <td>{element.category}</td>
+                                                <td>{element.brand}</td>
+                                                <td>{element.model}</td>
+                                                <td>{element.weight}</td>
+                                                <td>{element.quantity}</td>
+                                                <td>{element.price}</td>
                                                 <td className="d-flex justify-content-between">
-                                                    <NavLink to={`view/${element._id}`}> <button className="btn btn-secondary"><RemoveRedEyeIcon /></button></NavLink>
-                                                    <NavLink to={`edit/${element._id}`}>  <button className="btn btn-info"><CreateIcon /></button></NavLink>
-                                                    <button className="btn btn-warning" onClick={() => deleteuser(element._id)}><DeleteOutlineIcon /></button>
+                                                    <NavLink to={`view/${element._ProductId}`}> <button className="btn btn-success"><RemoveRedEyeIcon /></button></NavLink>
+                                                    <NavLink to={`edit/${element._ProductId}`}>  <button className="btn btn-primary"><CreateIcon /></button></NavLink>
+                                                    <button className="btn btn-danger" onClick={() => deleteuser(element._ProductId)}><DeleteOutlineIcon /></button>
                                                 </td>
                                             </tr>
                                         </>

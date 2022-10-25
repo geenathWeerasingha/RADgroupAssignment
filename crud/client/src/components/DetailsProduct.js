@@ -5,10 +5,13 @@ import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import MailOutlineIcon from '@mui/icons-material/MailOutline';
 import WorkIcon from '@mui/icons-material/Work';
-import PhoneAndroidIcon from '@mui/icons-material/PhoneAndroid';
-import LocationOnIcon from '@mui/icons-material/LocationOn';
+import ProductionQuantityLimitsIcon from '@mui/icons-material/ProductionQuantityLimits';
+import ModelTrainingIcon from '@mui/icons-material/ModelTraining';
 import { NavLink, useParams, useHistory } from 'react-router-dom';
-import Navbaar from './Navbaar';
+import PriceChangeIcon from '@mui/icons-material/PriceChange';
+// import PhoneAndroidIcon from '@mui/icons-material/PhoneAndroid';
+// import LocationOnIcon from '@mui/icons-material/LocationOn';
+
 
 const Details = () => {
 
@@ -68,10 +71,8 @@ const Details = () => {
     }
 
     return (
-        <>
-        <Navbaar />
         <div className="container mt-3">
-            <h1 style={{ fontWeight: 400 }}>Welcome KYDGW</h1>
+            <h1 style={{ fontWeight: 400 }}>Welcome Harsh Pathak</h1>
 
             <Card sx={{ maxWidth: 600 }}>
                 <CardContent>
@@ -82,21 +83,23 @@ const Details = () => {
                     <div className="row">
                         <div className="left_view col-lg-6 col-md-6 col-12">
                             <img src="/profile.png" style={{ width: 50 }} alt="profile" />
-                            <h3 className="mt-3">Name: <span >{getuserdata.name}</span></h3>
-                            <p className="mt-3"><MailOutlineIcon />Email: <span>{getuserdata.email}</span></p>
-                            <p className="mt-3"><WorkIcon />Designation: <span>{getuserdata.designation}</span></p>
+                            <h3 className="mt-3">category: <span >{getuserdata.category}</span></h3>
+                            <h3 className="mt-3">brand: <span >{getuserdata.brand}</span></h3>
+                            <p className="mt-3"><ModelTrainingIcon />model: <span>{getuserdata.model}</span></p>
+                
                         </div>
                         <div className="right_view  col-lg-6 col-md-6 col-12">
 
-                            <p className="mt-5"><PhoneAndroidIcon />mobile: <span>+91 {getuserdata.mobile}</span></p>
-                            <p className="mt-3"><LocationOnIcon />location: <span>{getuserdata.add}</span></p>
+                            <p className="mt-5"><ProductionQuantityLimitsIcon />quantity: <span>+91 {getuserdata.quantity}</span></p>
+                            <p className="mt-3"><PriceChangeIcon />price: <span>{getuserdata.price}</span></p>
+                            <p className="mt-3">Description: <span>{getuserdata.desc}</span></p>
                         </div>
                     </div>
 
                 </CardContent>
             </Card>
         </div>
-        </> )
+    )
 }
 
 export default Details

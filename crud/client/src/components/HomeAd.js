@@ -9,6 +9,7 @@ import Navbaar from './Navbaar';
 
 
 
+
 const Home = () => {
 
     const [getuserdata, setUserdata] = useState([]);
@@ -72,7 +73,7 @@ const Home = () => {
     return (
 
         <>
-        <Navbaar />
+        <Navbaar/>
             {
                 udata ?
                     <>
@@ -106,17 +107,17 @@ const Home = () => {
             <div className="mt-5">
                 <div className="container">
                     <div className="add_btn mt-2 mb-2">
-                        <NavLink to="/register" className="btn btn-primary">Add Employee</NavLink>
+                        <NavLink to="/register" className="btn btn-primary">Add Advertiesment</NavLink>
                     </div>
 
                     <table class="table">
                         <thead>
                             <tr className="table-primary">
                                 <th scope="col">id</th>
-                                <th scope="col">Name</th>
-                                <th scope="col">Designation</th>
-                                <th scope="col">Email</th>
-                                <th scope="col">Mobile</th>
+                                <th scope="col">Title</th>
+                                <th scope="col">Description</th>
+                                <th scope="col">Category</th>
+                                <th scope="col">Cost</th>
                                 <th scope="col"></th>
                             </tr>
                         </thead>

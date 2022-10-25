@@ -3,12 +3,12 @@ import CreateIcon from '@mui/icons-material/Create';
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
-import MailOutlineIcon from '@mui/icons-material/MailOutline';
-import WorkIcon from '@mui/icons-material/Work';
-import PhoneAndroidIcon from '@mui/icons-material/PhoneAndroid';
+import PaidIcon from '@mui/icons-material/Paid';
+import DescriptionIcon from '@mui/icons-material/Description';
+import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import { NavLink, useParams, useHistory } from 'react-router-dom';
-import Navbaar from './Navbaar';
+
 
 const Details = () => {
 
@@ -61,15 +61,13 @@ const Details = () => {
         if (res2.status === 422 || !deletedata) {
             console.log("error");
         } else {
-            console.log("user deleted");
+            console.log("record deleted");
             history.push("/");
         }
 
     }
 
     return (
-        <>
-        <Navbaar />
         <div className="container mt-3">
             <h1 style={{ fontWeight: 400 }}>Welcome KYDGW</h1>
 
@@ -82,21 +80,21 @@ const Details = () => {
                     <div className="row">
                         <div className="left_view col-lg-6 col-md-6 col-12">
                             <img src="/profile.png" style={{ width: 50 }} alt="profile" />
-                            <h3 className="mt-3">Name: <span >{getuserdata.name}</span></h3>
-                            <p className="mt-3"><MailOutlineIcon />Email: <span>{getuserdata.email}</span></p>
-                            <p className="mt-3"><WorkIcon />Designation: <span>{getuserdata.designation}</span></p>
+                            <h3 className="mt-3">Category: <span >{getuserdata.category}</span></h3>
+                            <p className="mt-3"><PaidIcon />Amount: <span>{getuserdata.email}</span></p>
+                            <p className="mt-3"><DescriptionIcon />Description: <span>{getuserdata.desc}</span></p>
                         </div>
                         <div className="right_view  col-lg-6 col-md-6 col-12">
 
-                            <p className="mt-5"><PhoneAndroidIcon />mobile: <span>+91 {getuserdata.mobile}</span></p>
-                            <p className="mt-3"><LocationOnIcon />location: <span>{getuserdata.add}</span></p>
+                            <p className="mt-5"><CalendarMonthIcon />Year: <span>{getuserdata.year}</span></p>
+                            <p className="mt-3"><LocationOnIcon />Premises: <span>{getuserdata.premises}</span></p>
                         </div>
                     </div>
 
                 </CardContent>
             </Card>
         </div>
-        </> )
+    )
 }
 
 export default Details

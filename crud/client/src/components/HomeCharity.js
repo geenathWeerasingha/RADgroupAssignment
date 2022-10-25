@@ -5,7 +5,7 @@ import DeleteOutlineIcon from '@mui/icons-material/Delete';
 import { NavLink } from 'react-router-dom';
 import { adddata, deldata } from './context/ContextProvider';
 import { updatedata } from './context/ContextProvider'
-import Navbaar from './Navbaar';
+
 
 
 
@@ -72,7 +72,6 @@ const Home = () => {
     return (
 
         <>
-        <Navbaar />
             {
                 udata ?
                     <>
@@ -106,17 +105,19 @@ const Home = () => {
             <div className="mt-5">
                 <div className="container">
                     <div className="add_btn mt-2 mb-2">
-                        <NavLink to="/register" className="btn btn-primary">Add Employee</NavLink>
+                        <NavLink to="/register" className="btn btn-primary">Add New</NavLink>
                     </div>
 
                     <table class="table">
                         <thead>
                             <tr className="table-primary">
                                 <th scope="col">id</th>
-                                <th scope="col">Name</th>
-                                <th scope="col">Designation</th>
-                                <th scope="col">Email</th>
-                                <th scope="col">Mobile</th>
+                                <th scope="col">Category</th>
+                                <th scope="col">Amount</th>
+                                <th scope="col">Year</th>
+                                <th scope="col">Month</th>
+                                <th scope="col">Premises</th>
+                                <th scope="col">Description</th>
                                 <th scope="col"></th>
                             </tr>
                         </thead>
@@ -128,10 +129,12 @@ const Home = () => {
                                         <>
                                             <tr>
                                                 <th scope="row">{id + 1}</th>
-                                                <td>{element.name}</td>
-                                                <td>{element.designation}</td>
-                                                <td>{element.email}</td>
-                                                <td>{element.mobile}</td>
+                                                <td>{element.categoty}</td>
+                                                <td>{element.amount}</td>
+                                                <td>{element.year}</td>
+                                                <td>{element.month}</td>
+                                                <td>{element.premises}</td>
+                                                <td>{element.desc}</td>
                                                 <td className="d-flex justify-content-between">
                                                     <NavLink to={`view/${element._id}`}> <button className="btn btn-secondary"><RemoveRedEyeIcon /></button></NavLink>
                                                     <NavLink to={`edit/${element._id}`}>  <button className="btn btn-info"><CreateIcon /></button></NavLink>

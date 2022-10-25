@@ -1,13 +1,17 @@
-import React, { useContext, useState } from 'react'
-import { NavLink, useHistory } from 'react-router-dom'
-import { adddata } from './context/ContextProvider';
+import React, { useContext, useEffect, useState } from 'react'
+import { NavLink, useParams,useHistory } from 'react-router-dom'
+import { updatedata } from './context/ContextProvider'
 import Navbaar from './Navbaar';
 
-const Register = () => {
 
-    const { udata, setUdata } = useContext(adddata);
+const Edit = () => {
 
-    const history = useHistory();
+    // const [getuserdata, setUserdata] = useState([]);
+    // console.log(getuserdata);
+
+   const {updata, setUPdata} = useContext(updatedata)
+
+    const history = useHistory("");
 
     const [inpval, setINP] = useState({
         name: "",
@@ -29,19 +33,18 @@ const Register = () => {
     }
 
 
-    const addinpdata = async (e) => {
-        e.preventDefault();
+    const { id } = useParams("");
+    console.log(id);
 
-        const { name, email, designation, add, mobile } = inpval;
 
-        const res = await fetch('http://localhost:5000/register', {
-            method: "POST",
+
+    const getdata = async () => {
+
+        const res = await fetch(`http://localhost:5000/getuser/${id}`, {
+            method: "GET",
             headers: {
                 "Content-Type": "application/json"
-            },
-            body: JSON.stringify({
-                name, email, designation, add, mobile
-            })
+            }
         });
 
         const data = await res.json();
@@ -49,48 +52,84 @@ const Register = () => {
 
         if (res.status === 422 || !data) {
             console.log("error ");
-            alert("error");
 
         } else {
-            history.push("/")
-            setUdata(data)
-            console.log("data added");
+            setINP(data)
+            console.log("get data");
 
         }
     }
 
+    useEffect(() => {
+        getdata();
+    }, []);
+
+
+    const updateuser = async(e)=>{
+        e.preventDefault();
+
+        const {name,email,designation,add,mobile} = inpval;
+
+        const res2 = await fetch(`http://localhost:5000/updateuser/${id}`,{
+            method: "PATCH",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body:JSON.stringify({
+                name,email,designation,add,mobile
+            })
+        });
+
+        const data2 = await res2.json();
+        console.log(data2);
+
+        if(res2.status === 422 || !data2){
+            alert("fill the data");
+        }else{
+            history.push("/")
+            setUPdata(data2);
+        }
+
+    }
+
     return (<>
-        <Navbaar />
+    <Navbaar/>
         <div className="container">
-            <NavLink to="/">home</NavLink>
+            <NavLink to="/">home2</NavLink>
             <form className="mt-4">
                 <div className="row">
                     <div class="mb-3 col-lg-6 col-md-6 col-12">
-                        <label for="exampleInputEmail1" class="form-label">Name</label>
+                        <label for="exampleInputEmail1" class="form-label">Title</label>
                         <input type="text" value={inpval.name} onChange={setdata} name="name" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" />
                     </div>
                     <div class="mb-3 col-lg-6 col-md-6 col-12">
-                        <label for="exampleInputPassword1" class="form-label">Email</label>
+                        <label for="exampleInputPassword1" class="form-label">Description</label>
                         <input type="email" value={inpval.email} onChange={setdata} name="email" class="form-control" id="exampleInputPassword1" />
                     </div>
                     <div class="mb-3 col-lg-6 col-md-6 col-12">
-                        <label for="exampleInputPassword1" class="form-label">Contact No</label>
+                        <label for="exampleInputPassword1" class="form-label">Cost</label>
                         <input type="number" value={inpval.mobile} onChange={setdata} name="mobile" class="form-control" id="exampleInputPassword1" />
                     </div>
                     <div class="mb-3 col-lg-6 col-md-6 col-12">
-                        <label for="exampleInputPassword1" class="form-label">Designation</label>
+                        <label for="exampleInputPassword1" class="form-label">Category</label>
                         <input type="text" value={inpval.designation} onChange={setdata} name="designation" class="form-control" id="exampleInputPassword1" />
                     </div>
                     <div class="mb-3 col-lg-6 col-md-6 col-12">
-                        <label for="exampleInputPassword1" class="form-label">Address</label>
+                        <label for="exampleInputPassword1" class="form-label">Year</label>
                         <input type="text" value={inpval.add} onChange={setdata} name="add" class="form-control" id="exampleInputPassword1" />
                     </div>
 
 
-                    <button type="submit" onClick={addinpdata} class="btn btn-primary">Submit</button>
+                    <button type="submit" onClick={updateuser} class="btn btn-primary">Submit</button>
                 </div>
             </form>
         </div>
-        </>)
+        </>  )
 }
-export default Register;
+
+export default Edit;
+
+
+
+
+

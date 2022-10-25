@@ -2,6 +2,7 @@ import React from 'react'
 import { NavLink } from 'react-router-dom'
 import {Link } from 'react-router-dom'
 
+
 const Navbaar = () => {
     return (
         <header>
@@ -14,13 +15,13 @@ const Navbaar = () => {
                     <div className="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul className="navbar-nav me-auto mb-2 mb-lg-0">
                             <li className="nav-item">
-                                <a className="nav-link active" aria-current="page" href="#">Employee Management</a>
+                                <a className="nav-link active" aria-current="page" href="#">Supplier Management</a>
                             </li>
                           
                         </ul>
                         <Link to="/login" className="inline-flex text-xs font-thin text-gray-300 sm:text-sm  hover:text-gray-200 ">
                                 Logout
-                        </Link>
+                        </Link>    
                     </div>
                 </div>
             </nav>
